@@ -1,28 +1,53 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <router-view>
+  </router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+
+  },
+
+  data: () => ({
+    dialog: false,
+    drawer: null,
+    items: [
+      { icon: 'contacts', text: 'Contacts' },
+      { icon: 'history', text: 'Frequently contacted' },
+      { icon: 'content_copy', text: 'Duplicates' },
+      {
+        icon: 'keyboard_arrow_up',
+        'icon-alt': 'keyboard_arrow_down',
+        text: 'Labels',
+        model: true,
+        children: [
+          { icon: 'add', text: 'Create label' },
+        ],
+      },
+      {
+        icon: 'keyboard_arrow_up',
+        'icon-alt': 'keyboard_arrow_down',
+        text: 'More',
+        model: false,
+        children: [
+          { text: 'Import' },
+          { text: 'Export' },
+          { text: 'Print' },
+          { text: 'Undo changes' },
+          { text: 'Other contacts' },
+        ],
+      },
+      { icon: 'settings', text: 'Settings' },
+      { icon: 'chat_bubble', text: 'Send feedback' },
+      { icon: 'help', text: 'Help' },
+      { icon: 'phonelink', text: 'App downloads' },
+      { icon: 'keyboard', text: 'Go to the old version' },
+    ],
+  })
+};
+</script>
