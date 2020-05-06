@@ -55,7 +55,10 @@ export default {
   },
   watch: {
     selection: function () {
-      this.$emit('selectTag', this.tags[this.selection]);
+      if (this.selection == undefined)// 没有选择标签
+        this.$emit('selectTag', '');
+      else // 向maipage传递标签
+        this.$emit('selectTag', this.tags[this.selection]);
     }
   },
   methods: {

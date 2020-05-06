@@ -5,6 +5,7 @@
                color="grey lighten-5"
                elevation="3">
         <BookNote v-if="tab==='book'"
+                  :tag="tag"
                   class="mb-n4" />
         <LightNote v-if="tab==='light'"
                    class="mb-n4" />
@@ -43,8 +44,7 @@ export default {
       this.tab = tab
     },
     selectTag: function (tag) {
-      if (tag)
-        this.tag = tag
+      this.tag = tag
     }
   }
 }

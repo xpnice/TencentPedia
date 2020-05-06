@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card v-for="card in cards"
+    <v-card v-for="card in computedCards"
             v-bind:key="card.id"
             shaped=""
             class="mx-auto mb-4">
@@ -83,11 +83,24 @@
 <script>
 export default {
   name: 'LightNote',
+  computed: {
+    computedCards: function () {
+      if (this.tag === '') return this.cards
+      else
+        return this.cards.filter((data) => { return data.tags.indexOf(this.tag) > -1 })
+    }
+  },
   methods: {
     clickshare () {
       this.snackbar = true
       this.info = '文章链接已经复制到粘贴板'
     },
+  },
+  props: {
+    tag: String
+  },
+  mounted () {
+    console.log(this.tag)
   },
   data () {
     return {
