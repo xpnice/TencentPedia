@@ -110,8 +110,8 @@ export default {
       default: function () {
         return {
           id: 1,
-          title: "腾讯暑期实习笔试+面试经验分享",
-          author: "FH",
+          title: "IMWeb前端一面",
+          author: "朱一旦",
           avotor:
             "https://alcdn.img.xiaoka.tv/20191102/60e/f5c/1321259173/60ef5c1e1124a5e54eff70893398aa63.jpg@1e_1c_0o_0l_96h_96w_100q_1pr.webp",
           date: "2020.05.03 12:11:45",

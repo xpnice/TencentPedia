@@ -9,8 +9,8 @@
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>温鑫</v-list-item-title>
-            <v-list-item-subtitle>同济大学算法大师</v-list-item-subtitle>
+            <v-list-item-title>上海老哥</v-list-item-title>
+            <v-list-item-subtitle>带薪水群世界第一</v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-btn outlined
@@ -24,21 +24,23 @@
 
       <v-divider></v-divider>
       <v-container class="grey lighten-5">
-        <v-row dense>
-          <v-col cols="12">
-            <v-textarea filled
-                        solo
-                        readonly
-                        value="小青龙和你看这软件整的行不行是很友好的朋友"
-                        auto-grow
-                        label="内容"
-                        rows="4"
-                        row-height="30"
-                        shaped></v-textarea>
-          </v-col>
-
-        </v-row>
+        <v-textarea filled
+                    solo
+                    readonly
+                    value="请问滨海大厦去腾讯大厦的班车周期是啥"
+                    auto-grow
+                    label="内容"
+                    rows="2"
+                    row-height="30"></v-textarea>
       </v-container>
+      <v-card-actions>
+        <v-btn text>
+          <v-icon color="red darken-1">mdi-heart-outline</v-icon>关注问题
+        </v-btn>
+        <v-btn text>
+          <v-icon color="green darken-1">mdi-message-outline</v-icon>回复
+        </v-btn>
+      </v-card-actions>
     </v-card>
     <v-card class="mx-auto mb-4">
       <v-list dense>
@@ -65,21 +67,23 @@
 
       <v-divider></v-divider>
       <v-container class="grey lighten-5">
-        <v-row dense>
-          <v-col cols="12">
-            <v-textarea filled
-                        solo
-                        readonly
-                        value="众所周知PHP是全世界最好的语言"
-                        auto-grow
-                        label="内容"
-                        rows="4"
-                        row-height="30"
-                        shaped></v-textarea>
-          </v-col>
-
-        </v-row>
+        <v-textarea filled
+                    solo
+                    readonly
+                    value="四月十七号变成的已完成现在没消息是凉了吗"
+                    auto-grow
+                    label="内容"
+                    rows="2"
+                    row-height="30"></v-textarea>
       </v-container>
+      <v-card-actions>
+        <v-btn text>
+          <v-icon color="red darken-1">mdi-heart-outline</v-icon>关注问题
+        </v-btn>
+        <v-btn text>
+          <v-icon color="green darken-1">mdi-message-outline</v-icon>回复
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </div>
 </template>

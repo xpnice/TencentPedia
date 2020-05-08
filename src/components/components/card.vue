@@ -11,7 +11,10 @@
 
           <v-list-item-content>
             <v-list-item-title>{{card.title}}</v-list-item-title>
-            <v-list-item-subtitle>{{card.user.name}}</v-list-item-subtitle>
+            <v-list-item-subtitle>
+              <span class="mr-5">{{card.user.name}}</span>
+              <span>{{article_date}}</span>
+            </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-btn :class="card.star ? 'orange--text ml-1' : 'ml-1'"
@@ -26,7 +29,7 @@
       <v-divider class="mx-4"></v-divider>
       <v-card-text class="text--primary">
 
-        <div>{{card.content.length>=400?card.content.slice(0,400)+'...':card.content}}</div>
+        <div>{{card.content.length>=400?card.content.slice(0,300)+'...':card.content}}</div>
 
         <v-chip v-for="tag in card.tags"
                 v-bind:key="tag"
@@ -34,6 +37,7 @@
                 small>{{tag}}</v-chip>
 
       </v-card-text>
+
       <v-divider class="mx-4"></v-divider>
 
       <v-card-actions>
@@ -97,6 +101,13 @@ export default {
   computed: {
     article_url: function () {
       return "http://" + this.origin + "/#/ViewArticle"
+    },
+    article_date: function () {
+      var date = new Date(this.card.date)
+      var now = new Date()
+      if (now - date > 24 * 60 * 60 * 1000)
+        return date.toLocaleDateString()
+      else return date.toLocaleTimeString()
     }
   },
   data () {
