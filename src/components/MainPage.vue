@@ -1,7 +1,20 @@
 <template>
   <v-row>
-    <v-col cols="8">
-      <v-sheet class="pa-4 ml-3"
+    <v-col md="12"
+           lg="12"
+           xs="12"
+           class="hidden-md-and-up">
+      <v-sheet class="pa-4"
+               color="grey lighten-5"
+               elevation="2">
+        <NavigateBoard v-on:selectTab="selectTab"
+                       v-on:selectTag="selectTag" />
+      </v-sheet>
+    </v-col>
+    <v-col md="12"
+           lg="8"
+           xs="12">
+      <v-sheet class="pa-4"
                color="grey lighten-5"
                elevation="3">
         <BookNote v-if="tab==='book'"
@@ -11,15 +24,17 @@
                    class="mb-n4" />
       </v-sheet>
     </v-col>
-    <v-col cols="4">
-      <v-sheet class="pa-4 mr-3 mb-5"
+    <v-col md="12"
+           lg="4"
+           xs="12">
+      <v-sheet class="pa-4 mb-5"
                color="grey lighten-5"
-               elevation="3">
+               elevation="3 hidden-sm-and-down">
         <NavigateBoard v-on:selectTab="selectTab"
                        v-on:selectTag="selectTag" />
       </v-sheet>
-      <v-sheet class="mr-3"
-               color="grey lighten-5"
+
+      <v-sheet color="grey lighten-5"
                elevation="3">
         <RecomandBoard />
       </v-sheet>

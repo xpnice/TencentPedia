@@ -27,7 +27,8 @@
         <v-row dense>
           <v-col cols="12">
             <v-textarea filled
-                        disabled
+                        solo
+                        readonly
                         value="小青龙和你看这软件整的行不行是很友好的朋友"
                         auto-grow
                         label="内容"

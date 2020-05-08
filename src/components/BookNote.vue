@@ -1,93 +1,36 @@
 <template>
   <div>
-    <v-card v-for="card in computedCards"
-            v-bind:key="card.id"
-            shaped=""
-            class="mx-auto mb-4">
-      <v-list>
-        <v-list-item>
-          <v-list-item-avatar>
-            <img :src="card.avotor"
-                 :alt="card.author">
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>{{card.title}}</v-list-item-title>
-            <v-list-item-subtitle>{{card.author}}</v-list-item-subtitle>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn :class="card.star ? 'orange--text ml-1' : 'ml-1'"
-                   icon
-                   @click="card.star = !card.star">
-              <v-icon>mdi-star{{card.star ?'':'-outline'}}</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list>
-
-      <v-divider class="mx-4"></v-divider>
-      <v-card-text class="text--primary">
-
-        <div>{{card.content.length>=400?card.content.slice(0,400)+'...':card.content}}</div>
-
-        <v-chip v-for="tag in card.tags"
-                v-bind:key="tag"
-                class="mt-2 mr-3"
-                small>{{tag}}</v-chip>
-
-      </v-card-text>
-      <v-divider class="mx-4"></v-divider>
-
-      <v-card-actions>
-        <v-btn :class="card.fav ? 'red--text ml-3' : 'ml-3'"
-               text
-               small
-               @click="card.fav = !card.fav">
-          <v-icon>mdi-thumb-up-outline</v-icon>{{card.fav_num+card.fav}}
-        </v-btn>
-        <v-btn class="ml-3"
-               small
-               text>
-          <v-icon>mdi-comment-processing-outline</v-icon>{{card.com_num}}
-        </v-btn>
-        <v-btn class="ml-3"
-               @click="clickshare"
-               small
-               text>
-          <v-icon>mdi-share-variant</v-icon>
-        </v-btn>
-
-        <v-spacer></v-spacer>
-        <v-btn color="blue darken-2"
-               small
-               href="http://localhost:8080/#/show"
-               target="_blank"
-               text>
-          Explore
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-    <v-snackbar v-model="snackbar"
-                bottom
-                :timeout="3000"
-                left>
-      {{ info }}
-      <v-btn color="pink"
-             text
-             @click="snackbar = false">
-        Close
-      </v-btn>
-    </v-snackbar>
+    <v-skeleton-loader :loading="loading"
+                       transition="scale-transition"
+                       v-for="card in computedCards.slice(this.page * 5-5, this.page * 5)"
+                       v-bind:key="card.id"
+                       height="94"
+                       class="mx-auto mb-4"
+                       type="list-item-avatar-three-line">
+      <card :card="card"></card>
+    </v-skeleton-loader>
+    <div class="text-center">
+      <v-pagination v-if="!loading"
+                    v-model="page"
+                    :length="maxPage"
+                    class="mx-auto mb-4"
+                    :total-visible="7"></v-pagination>
+    </div>
   </div>
 </template>
 <script>
+import card from './components/card'
 export default {
   name: 'LightNote',
+  components: { card },
   computed: {
     computedCards: function () {
       if (this.tag === '') return this.cards
       else
         return this.cards.filter((data) => { return data.tags.indexOf(this.tag) > -1 })
+    },
+    maxPage: function () {
+      return Math.ceil(this.computedCards.length / 5)
     }
   },
   methods: {
@@ -95,17 +38,27 @@ export default {
       this.snackbar = true
       this.info = '文章链接已经复制到粘贴板'
     },
+    fetchCards () {
+      this.loading = false
+    }
   },
   props: {
     tag: String
   },
+  watch: {
+    tag: function () {
+      this.page = 1
+    }
+  },
   mounted () {
-    console.log(this.tag)
+  },
+  created () {
+    setTimeout(this.fetchCards, 2000)
   },
   data () {
     return {
-      snackbar: false,
-      info: '',
+      page: 1,
+      loading: true,
       cards: [
         {
           id: 1,
@@ -155,6 +108,42 @@ export default {
           star: true,
           tags: ['IEG', '面经']
         },
+        {
+          id: 5,
+          avotor: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRYtzFubPrvOG0Yk4TeoWfEjQYFTCgvD5NQimf7C5jJPW4H9Y2e&usqp=CAU',
+          title: '腾讯云视频前端开发',
+          author: '雪饼',
+          content: '我是一个美少女，我有一只狗子，叫啥我忘了，我马上就要入职了，我的梦想是有一个大阳台。',
+          fav: true,
+          fav_num: 88,
+          com_num: 23,
+          star: false,
+          tags: ['CSIG', '面经', '前端']
+        },
+        {
+          id: 6,
+          avotor: 'https://s1.ax1x.com/2020/05/07/YZ2AyV.jpg',
+          title: 'PHP后台开发',
+          author: '上海老哥',
+          content: '众所周知PHP是世界上最好的语言，所以最好的男人要用最好的语言做最好的事',
+          fav: true,
+          fav_num: 625,
+          com_num: 98,
+          star: false,
+          tags: ['CSIG', '面经', '后端']
+        },
+        {
+          id: 6,
+          avotor: 'https://s1.ax1x.com/2020/05/07/YZ2UFH.jpg',
+          title: '互联网巨头offer收割机',
+          author: 'Jo哥',
+          content: 'alijo，98研究生，坐标北京，手持bat tmd offer，还有女朋友，jackma钦定的合伙人',
+          fav: true,
+          fav_num: 649,
+          com_num: 73,
+          star: false,
+          tags: ['CSIG', '面经']
+        }
       ]
     }
   }

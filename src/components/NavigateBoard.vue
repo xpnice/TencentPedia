@@ -1,6 +1,10 @@
 <template>
   <div>
     <v-row dense>
+      <v-col cols="12">
+        <span class="ml-2">导航栏</span>
+        <v-divider class="mt-2"/>
+      </v-col>
       <v-col cols="4">
         <v-btn text
                @click="selectTab('book')">
@@ -15,7 +19,7 @@
         <v-btn text
                @click="selectTab('book')">
           <v-icon large
-                  color="blue darken-2"
+                  color="green darken-2"
                   class="mr-2">
             mdi-timeline-clock</v-icon>入职生活
         </v-btn>
@@ -24,14 +28,18 @@
         <v-btn text
                @click="selectTab('light')">
           <v-icon large
-                  color="green darken-2"
+                  color="pink"
                   class="mr-2">
-            mdi-share-all</v-icon>Q&A
+            mdi-comment-question</v-icon>Q&A
         </v-btn>
       </v-col>
     </v-row>
     <v-row dense
            class="mt-3">
+      <v-col cols="12">
+        <span class="ml-2">筛选标签</span>
+        <v-divider class="mt-2"/>
+      </v-col>
       <v-col cols="12">
         <v-chip-group v-model="selection"
                       class="ml-4"
@@ -57,12 +65,12 @@ export default {
     selection: function () {
       if (this.selection == undefined)// 没有选择标签
         this.$emit('selectTag', '');
-      else // 向maipage传递标签
+      else // 向mainpage传递标签
         this.$emit('selectTag', this.tags[this.selection]);
     }
   },
   methods: {
-    selectTab: function (data) {
+    selectTab: function (data) { // 向mainpage传递
       this.$emit('selectTab', data);
     }
   }

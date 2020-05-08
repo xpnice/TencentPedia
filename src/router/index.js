@@ -17,11 +17,11 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: '/show',
-      component: () => import('@/pages/show-content'),
-      name: 'ShowContent',
+      path: '/ViewArticle',
+      component: () => import('@/pages/ViewArticle'),
+      name: 'ViewArticle',
       meta: {
-        title: 'Show Content',
+        title: 'ViewArticle',
         icon: 'form'
       }
     },
