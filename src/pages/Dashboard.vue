@@ -27,7 +27,7 @@
                 width="800px">
         <v-card>
           <v-card-title class="blue darken-3">
-            <span style="color:white">创建轻分享</span>
+            <span style="color:white">创建问题</span>
           </v-card-title>
           <v-container grid-list-sm>
             <v-layout row
@@ -36,7 +36,7 @@
                       align-center
                       justify-space-between>
                 <v-layout align-center>
-                  <v-text-field placeholder="轻分享标题"></v-text-field>
+                  <v-text-field placeholder="问题标题"></v-text-field>
                 </v-layout>
               </v-flex>
               <v-file-input accept="image/png, image/jpeg, image/bmp"
@@ -52,7 +52,7 @@
             </v-layout>
           </v-container>
           <v-card-actions>
-            <v-btn color="primary">创建读书笔记</v-btn>
+            <v-btn color="primary">创建文章</v-btn>
             <v-spacer></v-spacer>
             <v-btn text
                    @click="dialog = false">取消</v-btn>
