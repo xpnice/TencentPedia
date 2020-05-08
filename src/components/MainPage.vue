@@ -1,45 +1,50 @@
 <template>
-  <v-row>
-    <v-col md="12"
-           lg="12"
-           xs="12"
-           class="hidden-md-and-up">
-      <v-sheet class="pa-4"
-               color="grey lighten-5"
-               elevation="2">
-        <NavigateBoard v-on:selectTab="selectTab"
-                       v-on:selectTag="selectTag" />
-      </v-sheet>
-    </v-col>
-    <v-col md="12"
-           lg="8"
-           xs="12">
-      <v-sheet class="pa-4"
-               color="grey lighten-5"
-               elevation="3">
-        <BookNote v-if="tab==='book'"
-                  :tag="tag"
-                  class="mb-n4" />
-        <LightNote v-if="tab==='light'"
-                   class="mb-n4" />
-      </v-sheet>
-    </v-col>
-    <v-col md="12"
-           lg="4"
-           xs="12">
-      <v-sheet class="pa-4 mb-5"
-               color="grey lighten-5"
-               elevation="3 hidden-sm-and-down">
-        <NavigateBoard v-on:selectTab="selectTab"
-                       v-on:selectTag="selectTag" />
-      </v-sheet>
+  <div>
+    <v-row class="hidden-lg-and-up">
+      <v-col cols="12">
+        <v-sheet class="pa-4"
+                 color="grey lighten-5"
+                 elevation="2">
+          <NavigateBoard v-on:selectTab="selectTab"
+                         v-on:selectTag="selectTag" />
+        </v-sheet>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col md="12"
+             lg="8"
+             xl="8"
+             sm="12"
+             xs="12">
+        <v-sheet class="pa-4"
+                 color="grey lighten-5"
+                 elevation="3">
+          <BookNote v-if="tab==='book'"
+                    :tag="tag"
+                    class="mb-n4" />
+          <LightNote v-if="tab==='light'"
+                     class="mb-n4" />
+        </v-sheet>
+      </v-col>
+      <v-col md="12"
+             lg="4"
+             xl="8"
+             sm="12"
+             xs="12">
+        <v-sheet class="pa-4 mb-5 hidden-md-and-down"
+                 color="grey lighten-5"
+                 elevation="3 ">
+          <NavigateBoard v-on:selectTab="selectTab"
+                         v-on:selectTag="selectTag" />
+        </v-sheet>
 
-      <v-sheet color="grey lighten-5"
-               elevation="3">
-        <RecomandBoard />
-      </v-sheet>
-    </v-col>
-  </v-row>
+        <v-sheet color="grey lighten-5"
+                 elevation="3">
+          <RecomandBoard />
+        </v-sheet>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>

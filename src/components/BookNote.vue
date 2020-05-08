@@ -4,8 +4,8 @@
                        transition="scale-transition"
                        v-for="card in computedCards.slice(this.page * 5-5, this.page * 5)"
                        v-bind:key="card.id"
-                       height="94"
-                       class="mx-auto mb-4"
+                       height="104"
+                       class="mb-4"
                        type="list-item-avatar-three-line">
       <card :card="card"></card>
     </v-skeleton-loader>
