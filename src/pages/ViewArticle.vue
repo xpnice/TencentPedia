@@ -1,104 +1,21 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app dense color="blue darken-3" dark>
-        <v-toolbar-title style="width: 300px" class="ml-1 pl-3">
-          <span class="hidden-sm-and-down">TencentPedia</span>
-        </v-toolbar-title>
-        <v-text-field
-          flat
-          solo-inverted
-          hide-details
-          dense
-          prepend-inner-icon="search"
-          label="Search"
-          class="hidden-sm-and-down"
-        ></v-text-field>
-        <v-spacer></v-spacer>
-        <v-btn icon>
-          <v-icon>notifications</v-icon>
-        </v-btn>
-
-        <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn icon large v-on="on">
-              <v-avatar size="32px" item>
-                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-              </v-avatar>
-            </v-btn>
-          </template>
-
-          <v-card elevation="24">
-            <v-list>
-              <v-list-item>
-                <v-list-item-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-                </v-list-item-avatar>
-
-                <v-list-item-content>
-                  <v-list-item-title>温鑫</v-list-item-title>
-                  <v-list-item-subtitle>同济大学算法大师</v-list-item-subtitle>
-                </v-list-item-content>
-                <v-list-item-action>
-                  <v-btn outlined color="primary" @click="fav = !fav">
-                    <v-icon>mdi-account</v-icon>个人中心
-                  </v-btn>
-                </v-list-item-action>
-              </v-list-item>
-            </v-list>
-
-            <v-divider></v-divider>
-            <v-container class="grey lighten-5">
-              <v-row dense>
-                <v-col cols="6">
-                  <v-btn text @click="menu = false">
-                    <v-icon large color="green darken-2" class="mr-2">mdi-share-all</v-icon>轻分享
-                  </v-btn>
-                </v-col>
-                <v-col cols="6">
-                  <v-btn text @click="menu = false">
-                    <v-icon large color="blue darken-2" class="mr-2">mdi-clipboard-file</v-icon>读书笔记
-                  </v-btn>
-                </v-col>
-              </v-row>
-              <v-row dense class="mt-3">
-                <v-col cols="6">
-                  <v-btn text @click="menu = false">
-                    <v-icon large color="pink darken-2" class="mr-2">mdi-timeline-clock</v-icon>时光书单
-                  </v-btn>
-                </v-col>
-                <v-col cols="6">
-                  <v-btn text @click="menu = false">
-                    <v-icon large color="yellow darken-2" class="mr-2">mdi-star</v-icon>收藏列表
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-container>
-
-            <v-card-actions>
-              <v-btn text @click="menu = false">
-                <v-icon>mdi-menu</v-icon>账号设置
-              </v-btn>
-              <v-spacer></v-spacer>
-              <v-btn text color="error" @click="logout">
-                <v-icon>mdi-logout-variant</v-icon>登出
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-menu>
-      </v-app-bar>
-
-      <v-content >
-        <v-container fluid >
-          <v-card class="mx-auto" max-width="840">
+      <TopBar />
+      <v-content>
+        <v-container fluid>
+          <v-card class="mx-auto"
+                  max-width="840">
             <v-card-title>
-              <h2 style="padding-left: 20px; padding-top: 20px;" class="mt-2 mb-3">{{articalinfo.title}}</h2>
+              <h2 style="padding-left: 20px; padding-top: 20px;"
+                  class="mt-2 mb-3">{{articalinfo.title}}</h2>
             </v-card-title>
 
             <v-list style="padding-left: 20px;">
               <v-list-item>
                 <v-list-item-avatar>
-                  <img :src="articalinfo.avotor" :alt="articalinfo.author" />
+                  <img :src="articalinfo.avotor"
+                       :alt="articalinfo.author" />
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -106,36 +23,36 @@
                   <v-list-item-subtitle>{{articalinfo.date}}</v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action>
-                  <v-btn outlined color="primary" @click="fav = !fav">
+                  <v-btn outlined
+                         color="primary"
+                         @click="fav = !fav">
                     <v-icon>mdi-account</v-icon>个人中心
                   </v-btn>
                 </v-list-item-action>
               </v-list-item>
             </v-list>
 
-
-
             <v-divider class="mx-4"></v-divider>
-            <v-card-text style="padding-left: 32px;" v-html="articalinfo.content" />
+            <v-card-text style="padding-left: 32px;"
+                         v-html="articalinfo.content" />
           </v-card>
         </v-container>
 
         <v-container fluid>
-          <v-card class="mx-auto" max-width="840">
+          <v-card class="mx-auto"
+                  max-width="840">
             <ShowComments />
           </v-card>
         </v-container>
       </v-content>
 
-      <v-bottom-navigation 
-      :value="activeBtn" 
-      color="primary" 
-      horizontal 
-      fixed
-      hide-on-scroll
-      scroll-target="#scroll-area-1"
-      style="position: absolute"
-      >
+      <v-bottom-navigation :value="activeBtn"
+                           color="primary"
+                           horizontal
+                           fixed
+                           hide-on-scroll
+                           scroll-target="#scroll-area-1"
+                           style="position: absolute">
         <v-btn>
           <span>赞</span>
           <v-icon>mdi-heart</v-icon>
@@ -157,30 +74,32 @@
 
       </v-bottom-navigation>
 
-    <transition name="scale-transition">
-      <v-btn fab
-             fixed
-             right
-             bottom
-             color="primary"
-             @click="$vuetify.goTo(0)"
-             v-show="offsetTop > 0">
-        <v-icon>mdi-chevron-up</v-icon>
-      </v-btn>
-    </transition>
+      <transition name="scale-transition">
+        <v-btn fab
+               fixed
+               right
+               bottom
+               color="primary"
+               @click="$vuetify.goTo(0)"
+               v-show="offsetTop > 0">
+          <v-icon>mdi-chevron-up</v-icon>
+        </v-btn>
+      </transition>
 
     </v-app>
   </div>
 </template>
 
 <script>
-// import Comment from '@/components/Comment'
+import TopBar from '@/layouts/TopBar'
 import ShowComments from "@/components/ShowComments";
 export default {
   name: "Dashboard",
-  components: {ShowComments},
+  components: {
+    ShowComments,
+    TopBar  },
   methods: {
-    logout: function() {
+    logout: function () {
       this.$router.push("/");
     }
   },
@@ -188,7 +107,7 @@ export default {
     articalinfo: {
       type: Object,
       // 对象或数组默认值必须从一个工厂函数获取
-      default: function() {
+      default: function () {
         return {
           id: 1,
           title: "腾讯暑期实习笔试+面试经验分享",
@@ -207,7 +126,7 @@ export default {
       }
     }
   },
-  data() {
+  data () {
     return {
       offsetTop: 100,
     };

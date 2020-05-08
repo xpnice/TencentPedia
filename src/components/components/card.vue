@@ -5,13 +5,13 @@
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
-            <img :src="card.avotor"
-                 :alt="card.author">
+            <UserCard :user="card.user"
+                      pos="card" />
           </v-list-item-avatar>
 
           <v-list-item-content>
             <v-list-item-title>{{card.title}}</v-list-item-title>
-            <v-list-item-subtitle>{{card.author}}</v-list-item-subtitle>
+            <v-list-item-subtitle>{{card.user.name}}</v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
             <v-btn :class="card.star ? 'orange--text ml-1' : 'ml-1'"
@@ -61,7 +61,7 @@
                :href="article_url"
                target="_blank"
                text>
-          Explore
+          阅读全文
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -73,14 +73,18 @@
       <v-btn color="pink"
              text
              @click="snackbar = false">
-        Close
+        关闭
       </v-btn>
     </v-snackbar>
   </div>
 </template>
 
 <script>
+import UserCard from '@/components/UserCard'
 export default {
+  components: {
+    UserCard
+  },
   methods: {
     clickshare () {
       this.snackbar = true

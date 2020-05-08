@@ -1,6 +1,9 @@
 <template>
   <v-menu v-model="menu"
+          :open-on-click="pos==='top'"
+          :open-on-hover="pos!=='top'"
           :close-on-content-click="false"
+          :transition="pos!=='top'?'scale-transition':null"
           :nudge-width="200"
           offset-y>
     <template v-slot:activator="{ on }">
@@ -10,7 +13,7 @@
         <v-avatar size="32px"
                   item>
           <img :src="user.avatar"
-                 :alt="user.name">
+               :alt="user.name">
         </v-avatar>
       </v-btn>
     </template>
@@ -94,6 +97,43 @@
                  color="error"
                  @click="logout">
             <v-icon>mdi-logout-variant</v-icon>登出
+          </v-btn>
+        </v-card-actions>
+      </div>
+      <div v-if="pos!=='top'">
+        <v-divider></v-divider>
+        <v-container class="grey lighten-5">
+          <v-row dense>
+            <v-col cols="6">
+
+              <v-btn text
+                     @click="menu = false">
+                <v-icon large
+                        color="blue darken-2"
+                        class="mr-2">
+                  mdi-clipboard-file</v-icon>Ta的分享
+              </v-btn>
+            </v-col>
+            <v-col cols="6">
+              <v-btn text
+                     @click="menu = false">
+                <v-icon large
+                        color="pink"
+                        class="mr-2">
+                  mdi-comment-question</v-icon>Ta的提问
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
+
+        <v-card-actions>
+          <v-btn text
+                 @click="menu = false">
+            <v-icon color="red darken-1">mdi-heart-outline</v-icon>关注
+          </v-btn>
+          <v-btn text
+                 @click="menu = false">
+            <v-icon color="green darken-1">mdi-message-outline</v-icon>私信
           </v-btn>
         </v-card-actions>
       </div>

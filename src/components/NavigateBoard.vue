@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col cols="12">
         <span class="ml-2">导航栏</span>
-        <v-divider class="mt-2"/>
+        <v-divider class="mt-2" />
       </v-col>
       <v-col cols="4">
         <v-btn text
@@ -38,7 +38,7 @@
            class="mt-3">
       <v-col cols="12">
         <span class="ml-2">筛选标签</span>
-        <v-divider class="mt-2"/>
+        <v-divider class="mt-2" />
       </v-col>
       <v-col cols="12">
         <v-chip-group v-model="selection"
